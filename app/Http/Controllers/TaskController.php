@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+
     public function index()
     {
 
@@ -66,8 +68,8 @@ class TaskController extends Controller
             'description' => ['required', 'min:3']
         ]);
 
-        $task->fill($data)->save();
-        //$task->update($data);
+       $task->fill($data)->save();
+       //$task->update($data);
 
         return redirect('/tasks/' . $task->id);
     }
@@ -77,11 +79,12 @@ class TaskController extends Controller
         $task->delete();
         return redirect('/tasks');
     }
-
     public function complete(Task $task)
     {
-        $task->completed = !$task->completed;
+        $task->completed = true;
         $task->save();
+
         return redirect('/tasks');
     }
+
 }
